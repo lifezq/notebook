@@ -1,0 +1,51 @@
+谷歌的容器之路：从Borg到Kubernetes
+=================
+
+作为谷歌公司的开源容器集群管理系统，Kubernetes在Docker技术之上，为容器化的应用提供了资源调度、部署运行、服务发现和扩容缩容等丰富多样的功能。
+在项目公开后不久，微软、IBM、VMware、Docker、CoreOS以及SaltStack等多家公司便纷纷加入了Kubernetes社区，为该项目发展作出贡献。
+[谷歌高级副总裁Urs Hölzle也曾表示](http://googlecloudplatform.blogspot.com/2014/07/welcome-microsoft-redhat-ibm-docker-and-more-to-the-kubernetes-community.html)，
+通过多家公司及社区的共同合作，要确保Kubernetes在任何应用程序和任何环境（私有云、公共云以及混合云任何环境）都是一个强大并且开放容器的管理架构。
+
+目前，Kubernetes正处在快速发展的阶段，努力成长为容器管理领域的领导者。其迅速崛起吸引了大量开发人员的注意。除了对产品本身的兴趣，人们更感兴趣的是
+Kubernetes背后成功的原因和其发展过程中所经历的教训。但是，谷歌公司在之前对于内部管理系统Borg相关的信息都一直避而不谈，让外界很难了解Borg以及Borg
+与Kubernetes的关系。在2015年的Eurosys会议上，[谷歌终于公布了相关的细节](https://research.google.com/pubs/pub43438.html)，让大家可以了解谷歌
+从Borg到Kubernetes的成功之路。接下来，本文就从全角度多方面分析，详细揭示Kubernetes与Borg的关系，从而探究谷歌领先全球技术的奥秘。
+
+Borg是谷歌公司的内部容器管理系统。早在十几年前，该公司就已经部署Borg系统对来自于几千个应用程序所提交的job进行接收、调试、启动、停止、重启和监控。
+该项目的目的是实现资源管理的自动化以及跨多个数据中心的资源利用率最大化。Kubernetes项目的创始人
+[Brendan Burns 曾表示](http://www.csdn.net/article/2014-09-18/2821759-Google-Kubernetes-interview)，针对Borg系统 ，谷歌进行了很多
+尝试，积累了大量经验。Kubernetes项目的目的就是将Borg最精华的部分提取出来，使现在的开发者能够更简单、直接地应用。它以Borg为灵感，但又没那么复杂和
+功能全面，更强调了模块性和可理解性。因此，在2013年启动的Kubernetes项目只是谷歌公司顺应时代发展步伐，把Borg相关的技术和经验予以公开和定制化的产物。
+接下来，我们首先从四个方面来分析Kubernetes从Borg项目所继承的内容，展示Borg所带来的经验。
+
+Pod是Kubernetes最基本的部署调度单元，用来定义一个或多个相关的容器。通过定义一个Replication Controller，Kubernetes可以将同一个模块部署到任意
+多个容器中，并自动管理这些容器，大大简化了系统管理的难度和工作量。其实，在Borg项目中已经有完成类似功能的模块——Alloc。在Borg中，Alloc主要用于运行
+服务集群文件系统相关的日志以及数据传输工作的web服务器以及用户自定义的一些处理函数。Kubernetes在提供这种一个容器运行一个应用的服务模式的基础上，又包
+含了一个虚拟机运行多个进程的功能。可以看出，谷歌在Kubernetes的开发过程中，既继承了Alloc的优势，又结合实际需求进行了改进，促进了Pod这一核心概念的成熟。
+
+
+另外一方面，Kubernetes继承了Borg项目中集群管理的理念。在Borg项目中，其所管理的对象是细粒度的任务或者机器。但是，Borg中运行的应用程序用到了针对集群
+层次的重命名和负载平衡服务。正是这些服务令开发人员认识到了集群层次进行管理的高效之处。因此，Kubernetes项目直接把service作为了基本操作单元。Service
+是真实应用服务的抽象，对外表现为一个单一访问接口。这样，外部不需要了解后端运行情况就可以直接使用service，方便了扩展和后端维护工作。
+
+调试技术是Kubernetes从Borg项目中受益的另一个方面。在Borg项目中，由于使用人员都是谷歌公司内部员工，开发人员采用了把调试信息直接暴露给用户的方式。
+在遇到问题时，用户可以首先通过相互沟通来解决普遍存在的问题。此外，Borg还提供了各种层次的UI和调试工具，让用户可以在面对大量数据时很好的针对自己遇到
+的据情况进行详细分析。通过借鉴Borg中的成功经验，Kubernetes提供了cAdvisor资源监控工具、基于Elasticserach等日志聚合工具等。这些工具和机制为用户
+调试相关问题提供了很大的方便。
+
+最后一方面是关于分布式系统的主节点Master。Master是一个控制器进程，在单元的级别上运行，并保存着所有Borglet上的状态数据。作为Borg生态系统中的核心，
+Master包含了准入控制、周期性任务提交等服务。Kubernetes在此基础上进一步提供了处理请求和管理下层状态对象的API服务器。类似节点控制器和复制控制器的集
+群管理逻辑都变为了API服务器的客户端。
+
+通过以上四个方面，读者可以看到在Borg的设计中，谷歌公司已经采用了很多具有可扩展性的设计思路。这些想法为Kubernetes开发提供了成功的例子，使得谷歌
+可以在Docker崭露头角之时迅速启动Kubernetes项目。当然，Borg项目也给出了一些深刻的教训，为Kubernetes设计提供了前车之鉴。
+
+Borg把Job作为任务Task的唯一成组机制。针对Job中的部分服务或者Task中的部分Job，Borg不能把他们进行局部成组尽心管理。针对该问题，Kubernetes提出了
+Label的改变。Label是用于区分Pod、Service、Replication Controller的key/value键值对，Pod、Service、 Replication Controller可以有多个
+label，但是每个label的key只能对应一个value。正是通过Label，Service和Replication Controller能够更好的与多个容器进行沟通。另外，Borg还存在
+一个机器上的所有Task使用同一个IP以及配置过于复杂等问题。Kubernetes针对这些问题都进行了优化。
+
+可以看出，正是在过去十年间经验与教训的基础上，Kubernetes项目才顺势崛起，迅速成为一个强大的容器管理架构。通过比较这些方面，广大开发者可以学习到谷歌
+公司从Borg走向Kubernetes的艰辛之路以及其在技术发展方面的前瞻性。
+
+[阅读原文](http://www.infoq.com/cn/news/2015/05/Kubernetes-Borg-Eurosys/)
