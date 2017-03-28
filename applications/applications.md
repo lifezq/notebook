@@ -6,7 +6,9 @@
 [k8s](https://github.com/ericchiang/k8s)    
 
 ### Serverless - Updated by 20170328
-[fission](https://github.com/fission/fission)
+[fission](https://github.com/fission/fission)         
+[serverless](https://github.com/serverless/serverless)      
+[apex](https://github.com/apex/apex)
 
 ### Software to automate the management and configuration - Updated by 20170326
 [ansible](https://github.com/ansible/ansible)         
