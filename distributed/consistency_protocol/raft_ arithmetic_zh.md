@@ -20,39 +20,39 @@ Raft阶段分为两个，首先是选举过程，然后在选举出来的领导�
 
 1. 任何一个服务器都可以成为一个候选者Candidate，它向其他服务器Follower发出要求选举自己的请求：
 
-![img_01](https://github.com/lifezq/notebook/blob/master/imgs/raft1.png)
+![img_01](https://github.com/lifezq/notebook/blob/master/imgs/distributed/raft1.png)
 
 2. 其他服务器同意了，发出OK。
 
-![img_02](https://github.com/lifezq/notebook/blob/master/imgs/raft2.png)
+![img_02](https://github.com/lifezq/notebook/blob/master/imgs/distributed/raft2.png)
 
 注意如果在这个过程中，有一个Follower当机，没有收到请求选举的要求，因此候选者可以自己选自己，只要达到N/2 + 1 的大多数票，候选人还是可以成为Leader的。
 
 3. 这样这个候选者就成为了Leader领导人，它可以向选民也就是Follower们发出指令，比如进行日志复制。
 
 
-![img_03](https://github.com/lifezq/notebook/blob/master/imgs/raft3.png)
+![img_03](https://github.com/lifezq/notebook/blob/master/imgs/distributed/raft3.png)
 
 4. 以后通过心跳进行日志复制的通知
 
-![img_04](https://github.com/lifezq/notebook/blob/master/imgs/raft4.png)
+![img_04](https://github.com/lifezq/notebook/blob/master/imgs/distributed/raft4.png)
 
 5. 如果一旦这个Leader当机崩溃了，那么Follower中有一个成为候选者，发出邀票选举。
 
 
-![img_05](https://github.com/lifezq/notebook/blob/master/imgs/raft5.png)
+![img_05](https://github.com/lifezq/notebook/blob/master/imgs/distributed/raft5.png)
 
 6. Follower同意后，其成为Leader，继续承担日志复制等指导工作：
 
 
-![img_06](https://github.com/lifezq/notebook/blob/master/imgs/raft6.png)
+![img_06](https://github.com/lifezq/notebook/blob/master/imgs/distributed/raft6.png)
 
  
 
 值得注意的是，整个选举过程是有一个时间限制的，如下图：
 
 
-![img_07](https://github.com/lifezq/notebook/blob/master/imgs/raft7.png)
+![img_07](https://github.com/lifezq/notebook/blob/master/imgs/distributed/raft7.png)
 
 　　Splite Vote是因为如果同时有两个候选人向大家邀票，这时通过类似加时赛来解决，两个候选者在一段timeout比如300ms互相不服气的等待以后，因为双方得到的票数是一样的，一半对一半，那么在300ms以后，再由这两个候选者发出邀票，这时同时的概率大大降低，那么首先发出邀票的的候选者得到了大多数同意，成为领导者Leader，而另外一个候选者后来发出邀票时，那些Follower选民已经投票给第一个候选者，不能再投票给它，它就成为落选者了，最后这个落选者也成为普通Follower一员了。
 
@@ -62,15 +62,15 @@ Raft阶段分为两个，首先是选举过程，然后在选举出来的领导�
 
 　　下面以日志复制为例子说明Raft算法，假设Leader领导人已经选出，这时客户端发出增加一个日志的要求，比如日志是"sally"：
 
-![img_08](https://github.com/lifezq/notebook/blob/master/imgs/raft8.png)
+![img_08](https://github.com/lifezq/notebook/blob/master/imgs/distributed/raft8.png)
 
 2. Leader要求Followe遵从他的指令，都将这个新的日志内容追加到他们各自日志中：
 
-![img_09](https://github.com/lifezq/notebook/blob/master/imgs/raft9.png)
+![img_09](https://github.com/lifezq/notebook/blob/master/imgs/distributed/raft9.png)
 
 3.大多数follower服务器将日志写入磁盘文件后，确认追加成功，发出Commited Ok:
 
-![img_10](https://github.com/lifezq/notebook/blob/master/imgs/raft10.png)
+![img_10](https://github.com/lifezq/notebook/blob/master/imgs/distributed/raft10.png)
 
 4. 在下一个心跳heartbeat中，Leader会通知所有Follwer更新commited 项目。
 
