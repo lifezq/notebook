@@ -252,4 +252,5 @@ proto中的定义如下, 请求和响应的前面都加上了stream标识:
 
 在实际的应用中，你可以根据你的场景来使用单向流还是双向流。
 
+
 [阅读原文](http://colobu.com/2017/04/06/dive-into-gRPC-streaming/)
