@@ -201,3 +201,5 @@ pipework不仅可以使用Linux bridge连接Docker容器，还可以与OpenVswit
 ## 3. 总结
 
 通过上面的介绍，我相信大家对Docker的网络已经有了一定的了解。对于一个基本应用而言，Docker的网络模型已经很不错了。然而，随着云计算和微服务的兴起，我们不能永远停留在使用基本应用的级别上，我们需要性能更好且更灵活的网络功能。pipework正好满足了我们这样的需求，从上面的样例中，我们可以看到pipework的方便之处。但是，同时也应注意到，pipework并不是一套解决方案，它只是一个网络配置工具，我们可以利用它提供的强大功能，帮助我们构建自己的解决方案。
+
+[阅读原文](http://www.infoq.com/cn/articles/docker-network-and-pipework-open-source-explanation-practice)
