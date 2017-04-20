@@ -68,7 +68,7 @@
 
 
 
-![img_01](http://img.my.csdn.net/uploads/201209/05/1346821838_4134.jpg)      
+![img_01](https://github.com/lifezq/notebook/blob/master/imgs/search_engine/687474703a.jpeg)      
 
 <center  style="color:red;text-align:center;">搜索引擎架构</center>
 
@@ -92,3 +92,4 @@
 ### 搜索结果排序
 &emsp;&emsp;如果保存在缓存的信息无法满足用户需求，搜索引擎需要调用"网页排序"模快功能，根据用 户的査询实时计算哪些网页是满足用户信息需求的，并排序输出作为搜索结果。而网页排序最 重要的两个参考因素中，一个是内容相似性因素，即哪些网页是和用户查询密切相关的；另外 一个是网页重要性因素，即哪些网页是质量较好或者相对重要的，这点往往可以从链接分析的 结果获得。结合以上两个考虑因素，就可以对网页进行排序，作为用户查询的搜索结果。
 
+[阅读原文](http://blog.csdn.net/hguisu/article/details/7955985)
