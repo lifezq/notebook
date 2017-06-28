@@ -186,3 +186,4 @@ Innodb VS Myisam
 
 从上面可以看出，Myisam引擎默认配置下插入速度远超Innodb , ~50000/s
 
+>  此外，innodb还应注意一个参数: innodb_file_per_table. 是否共享表空间
