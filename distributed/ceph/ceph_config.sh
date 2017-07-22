@@ -118,8 +118,7 @@ ceph osd pool set hotdb target_max_bytes 1000000000000
 ceph osd pool set hotdb hit_set_count 128
 ceph osd pool set hotdb hit_set_period 3600
 #ceph osd pool --help | grep bloom
-#ceph osd --help | grep bloom
-ceph osd pool set hotdb hit_set_  
+#ceph osd --help | grep bloom 
 ceph osd pool set hotdb hit_set_type bloom
 ceph osd pool set hotdb min_read_recency_for_promote 5
 ceph osd pool set hotdb min_write_recency_for_promote 5
