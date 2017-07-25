@@ -122,10 +122,9 @@ ceph osd pool set hotdb hit_set_period 3600
 ceph osd pool set hotdb hit_set_type bloom
 ceph osd pool set hotdb min_read_recency_for_promote 5
 ceph osd pool set hotdb min_write_recency_for_promote 5
-ceph osd pool set hotdb target_max_objects 50
+ceph osd pool set hotdb target_max_objects 512
 ceph osd pool set hotdb cache_target_dirty_ratio 0.4
 ceph osd pool set hotdb  cache_target_dirty_high_ratio 0.6
-ceph osd pool set hotdb cache_target_full_ratio 0.6
+ceph osd pool set hotdb cache_target_full_ratio 0.8
 ceph osd pool set hotdb cache_min_flush_age 300
 ceph osd pool set hotdb cache_min_evict_age 600
-ceph osd pool set hotdb target_max_objects 128
