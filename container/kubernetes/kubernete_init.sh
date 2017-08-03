@@ -23,6 +23,10 @@ echo Name of the Pod: $POD_NAME
 
 kubectl logs $POD_NAME
 
+# label
+kubectl label --record pods $POD_NAME app=$APPNAME
+kubectl label --record deployments $APPNAME app=$APPNAME
+
 kubectl expose deployment/$APPNAME --type="NodePort"  --port=80 --target-port=80
 
 NODE_PORT=$(kubectl get services/$APPNAME -o go-template='{{(index .spec.ports 0).nodePort}}')
@@ -38,7 +42,13 @@ curl -XGET http://$KUBEIP:$NODE_PORT
 kubectl rollout deployments/$APPNAME
 
 # update image
-kubectl set image deployments/$APPNAME $APPNAME=nginx:1.13
+kubectl set image --record deployments/$APPNAME $APPNAME=nginx:1.13
 
 # rollout undo
+kubectl rollout history deployments/$APPNAME
+kubectl rollout history deployment/$APPNAME --revision=1
 kubectl rollout undo deployments/$APPNAME
+kubectl rollout undo deployments/$APPNAME --to-revision=2
+
+# resources limits
+kubectl set resources --record deployment/$APPNAME -c=$APPNAME --limits=cpu=100m,memory=256Mi
