@@ -8,8 +8,8 @@ kubectl version
 kubectl cluster-info
 kubectl get nodes
 
-# deploy app nginx-1-12
-APPNAME="nginx-1-12"
+# deploy app nginx
+APPNAME="nginx"
 
 kubectl run $APPNAME --image=docker.io/nginx:1.12 --port=80
 
