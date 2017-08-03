@@ -52,3 +52,8 @@ kubectl rollout undo deployments/$APPNAME --to-revision=2
 
 # resources limits
 kubectl set resources --record deployment/$APPNAME -c=$APPNAME --limits=cpu=100m,memory=256Mi
+
+# patch progress deadline
+kubectl patch --record deployment/$APPNAME -p '{"spec":{"progressDeadlineSeconds":600}}'
+
+kubectl get deployment $APPNAME -o yaml
