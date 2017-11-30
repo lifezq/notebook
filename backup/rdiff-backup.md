@@ -18,11 +18,13 @@ Python v2.2 或更高版本 librsync v0.9.7 或更高版本 pylibacl 和 pyxattr
 
 该脚本已经存在于主流 Linux 发行版的官方仓库中，只需运行以下命令来安装 rdiff-backup 及其依赖关系：
 
-在 Debian/Ubuntu 中      
-$ sudo apt-get update   
-$ sudo apt-get install librsync-dev rdiff-backup     
+在 Debian/Ubuntu 中    
+```
+$ sudo apt-get update   
+$ sudo apt-get install librsync-dev rdiff-backup     
+```
 
-在 CentOS/RHEL 7 中     
+在 CentOS/RHEL 7 中     
 ```
 # wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm   
 # rpm -ivh epel-release-7-9.noarch.rpm   
@@ -50,22 +52,22 @@ $ sudo apt-get install librsync-dev rdiff-backup
 
 #### 备份文件到不同分区   
 下面的例子会备份 /etc 文件夹到另外一个分区的 Backup 文件夹内：        
-$ sudo rdiff-backup /etc /media/aaronkilik/Data/Backup/mint_etc.backup      
+    $ sudo rdiff-backup /etc /media/aaronkilik/Data/Backup/mint_etc.backup      
 
 ![img_01](http://image.techweb.com.cn/upload/roll/2017/06/24/20170624217_1164.png)
 
 要排除一个特定文件夹和它的子目录，你可以如下使用 --exclude 选项：
-$ sudo rdiff-backup --exclude /etc/cockpit --exclude /etc/bluetooth /media/aaronkilik/Data/Backup/mint_etc.backup    
+    $ sudo rdiff-backup --exclude /etc/cockpit --exclude /etc/bluetooth /media/aaronkilik/Data/Backup/mint_etc.backup    
 我们可以如下使用 --include-special-files 包含所有的设备文件、fifo 文件、socket 文件和链接文件：    
-$ sudo rdiff-backup --include-special-files --exclude /etc/cockpit /media/aaronkilik/Data/Backup/mint_etc.backup     
+    $ sudo rdiff-backup --include-special-files --exclude /etc/cockpit /media/aaronkilik/Data/Backup/mint_etc.backup     
 还有另外两个重要标志来用于选择文件，--max-file-size 用来排除大于给定字节大小的文件，--min-file-size 用于排除小于给定字节大小的文件：     
-$ sudo rdiff-backup --max-file-size 5M --include-special-files --exclude /etc/cockpit /media/aaronkilik/Data/Backup/mint_etc.backup    
+    $ sudo rdiff-backup --max-file-size 5M --include-special-files --exclude /etc/cockpit     /media/aaronkilik/Data/Backup/mint_etc.backup    
 
 #### 在本地 Linux 服务器上备份远程文件   
 要这么做，我们使用：    
-Remote Server (tecmint)         : 192.168.56.102  Local Backup Server (backup)    : 192.168.56.10     
+   Remote Server (tecmint)         : 192.168.56.102  Local Backup Server (backup)    : 192.168.56.10     
 如前所述，你必须在两台机器上安装相同版本的 rdiff-backup，如下所示，请尝试在两台机器上检查版本：   
-$ rdiff-backup -V      
+     $ rdiff-backup -V      
 ![img_02](http://image.techweb.com.cn/upload/roll/2017/06/24/20170624774_3952.png)     
  
 在备份服务器中，像这样创建一个存储备份文件的目录：    
@@ -96,7 +98,8 @@ $ rdiff-backup -V
 
 -remote-schema 选项使我们能够指定使用替代方法连接到远程计算机。   
 现在，我们开始在备份服务器 192.168.56.10 上创建一个 backup.sh 脚本，如下所示：    
-    # cd ~/bin # vi backup.sh     
+    # cd ~/bin  
+    # vi backup.sh      
 添加下面的行到脚本中。   
 ```
 #!/bin/bash 
@@ -115,9 +118,9 @@ rdiff-backup --force --remove-older-than 1M /backups/192.168.56.102_logs.back
 ```
 
 保存文件并退出，接着运行下面的命令在服务器 192.168.56.10 上的 crontab 中添加此脚本：   
-# crontab -e    
+    # crontab -e    
 添加此行在每天午夜运行你的备份脚本：   
-0   0  *  *  * /root/bin/backup.sh > /dev/null 2>&1    
+  0   0  *  *  * /root/bin/backup.sh > /dev/null 2>&1    
 保存 crontab 并退出，现在我们已经成功自动化了备份过程。确保一切如希望那样工作。    
 阅读 rdiff-backup 的手册页获取更多信息、详尽的使用选项以及示例：    
     # man rdiff-backup    
