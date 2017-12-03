@@ -58,3 +58,5 @@ compaction不能限速.
 leveldb 适用于小的kv库(value小(<1K), 总size小(<100G)), 比如chrome客户端 或者小的cache(比如某些模块自带的cache)     
 由于LevelDB把key和value都放在同一个文件里面, compaction的时候必须key和value一起读写, 所以写放大显得更为明显. 其实我们只需要保证key有序, compaction只需对key做就行了，key和value分开来存放也许一个不错的优化思路.     
 在程序里面, 可以把leveldb/rocksdb当做一个 自动扩容, 持久化 的hash表来用.    
+
+[阅读原文](http://idning.github.io/leveldb-rocksdb-on-large-value.html)
