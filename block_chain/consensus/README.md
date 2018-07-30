@@ -53,6 +53,7 @@ Ethereum (currently)
 Dash  
 Stratis  
 ### 4.POA 权威证明   
+应用以太坊 Clique 权威证明共识协议  参考Clique PoA protocol & Rinkeby PoA testnet:  https://github.com/ethereum/EIPs/issues/225     
 在基于PoA的网络中，事务和块由经批准的帐户验证，称为验证器。[2]验证器运行软件，允许它们将事务放入块中。该过程是自动化的，不需要验证器持续监控其计算机。但是，它确实需要维护计算机（权限节点[3]）不妥协。该术语由以太坊和Parity Technologies的联合创始人Gavin Wood创造。[4]    
    
 PoA个人有权成为验证人，因此有动力保留他们获得的职位。通过将声誉附加到身份上，验证者可以通过激励来维护交易过程，因为他们不希望自己的身份与负面声誉相关联。这被认为比PoS更强大，如：  
