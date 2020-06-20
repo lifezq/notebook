@@ -33,6 +33,19 @@
 - [ ] 分布式事务框架
     - [ ]  seata start 16.8k
     - Seata is an easy-to-use, high-performance, open source distributed transaction solution. https://seata.io
+
+- [ ] 缓存框架
+- 缓存框架的必备需求
+> 1. 并发
+> 2. 内存限制(限制最大的可使用空间)
+> 3. 在多核和多goroutines之间更好的扩展
+> 4. 在非随机密钥的情况下，很好地扩展(eg. Zipf)
+> 5. 更高的缓存命中率
+    - [ ] caffeine    start 7.8k    
+    - 特点：满足以上5点缓存特性
+    - [ ] bigcache  start 4k
+    - 综合评分略优于groupcache
+    - [ ] groupcache  start 8.8k
     
 - [ ] 压测工具
     - [ ] wrk    start 25k
