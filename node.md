@@ -36,4 +36,8 @@
     
 - [ ] 压测工具
     - [ ] wrk    start 25k
-    - Modern HTTP benchmarking tool.  https://github.com/wg/wrk       
+    - Modern HTTP benchmarking tool.  https://github.com/wg/wrk      
+    
+- [ ] json编码
+    - [ ] json-iterator/go    start 7.8k    
+    - 特点：编码性能高于easyjson
