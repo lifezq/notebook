@@ -42,7 +42,7 @@
 > 4. 在非随机密钥的情况下，很好地扩展(eg. Zipf)   
 > 5. 更高的缓存命中率    
 
-- [ ] list
+- [ ]           
     - [ ] caffeine    start 7.8k
     - 特点：满足以上5点缓存特性   
     - [ ] bigcache  start 4k   
