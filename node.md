@@ -34,6 +34,11 @@
     - [ ]  seata start 16.8k  
     - Seata is an easy-to-use, high-performance, open source distributed transaction solution. https://seata.io
 
+- [ ] 分布式锁
+    - [ ] 基于数据库的实现方式的核心思想是：在数据库中创建一个表，表中包含方法名等字段，并在方法名字段上创建唯一索引，想要执行某个方法，就使用这个方法名向表中插入数据，成功插入则获取锁，执行完成后删除对应的行数据释放锁。
+    - [ ] 基于Redis的实现方式:可以通过setnx或redlock。 Redis 分布式锁，一般就是用 Redisson 框架就好了，非常的简便易用
+    - [ ] 基于ZooKeeper的实现方式：ZooKeeper是一个为分布式应用提供一致性服务的开源组件，它内部是一个分层的文件系统目录树结构，规定同一个目录下只能有一个唯一文件名。Curator 这个开源框架，对 ZooKeeper（以下简称 ZK）分布式锁的实现
+
 - [ ] 缓存框架
 - 缓存框架的必备需求   
 > 1. 并发   
