@@ -61,3 +61,11 @@
 - [ ] json编码
     - [ ] json-iterator/go    start 7.8k    
     - 特点：编码性能高于easyjson
+    
+- [ ] CUI 命令行用户交互工具
+    - [ ] go-prompt: A library for building powerful interactive prompts inspired by python-prompt-toolkit, making it easier to build cross-platform command line tools using Go. https://github.com/c-bata/go-prompt 
+    - [ ] gocui: Minimalist Go package aimed at creating Console User Interfaces. https://github.com/jroimartin/gocui
+    
+- [ ] CLI 命令行工具
+    - [ ] cobra: Cobra is both a library for creating powerful modern CLI applications as well as a program to generate applications and command files. https://github.com/spf13/cobra
+    - [ ] cli: is a simple, fast, and fun package for building command line apps in Go. The goal is to enable developers to write fast and distributable command line applications in an expressive way. https://github.com/urfave/cli
