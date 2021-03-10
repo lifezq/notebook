@@ -8,9 +8,7 @@ regarding copyright ownership.  The ASF licenses this file
 to you under the Apache License, Version 2.0 (the
 "License"); you may not use this file except in compliance
 with the License.  You may obtain a copy of the License at
-
     http://www.apache.org/licenses/LICENSE-2.0
-
 Unless required by applicable law or agreed to in writing,
 software distributed under the License is distributed on an
 "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -50,8 +48,9 @@ under the License.
    | The path to the local repository maven will use to store artifacts.
    |
    | Default: ${user.home}/.m2/repository
-  <localRepository>/path/to/local/repo</localRepository>
-  -->
+    -->
+  <localRepository>E:\Users\ryan\.m2\repository</localRepository>
+
 
   <!-- interactiveMode
    | This will determine whether maven prompts you when it needs input. If set to false,
@@ -171,14 +170,8 @@ under the License.
         <mirror>
             <id>central</id>
             <name>Maven Repository Switchboard</name>
-            <url>http://repo1.maven.org/maven2/</url>
+            <url>https://repo1.maven.org/maven2/</url>
             <mirrorOf>central</mirrorOf>
-        </mirror>
-        <mirror>
-            <id>repo2</id>
-            <mirrorOf>central</mirrorOf>
-            <name>Human Readable Name for this Mirror.</name>
-            <url>http://repo2.maven.org/maven2/</url>
         </mirror>
         <mirror>
             <id>ibiblio</id>
@@ -243,11 +236,9 @@ under the License.
      | This profile example uses the JDK version to trigger activation, and provides a JDK-specific repo.
     <profile>
       <id>jdk-1.4</id>
-
       <activation>
         <jdk>1.4</jdk>
       </activation>
-
       <repositories>
         <repository>
           <id>jdk14</id>
@@ -281,36 +272,17 @@ under the License.
      |
     <profile>
       <id>env-dev</id>
-
       <activation>
         <property>
           <name>target-env</name>
           <value>dev</value>
         </property>
       </activation>
-
       <properties>
         <tomcatPath>/path/to/tomcat/instance</tomcatPath>
       </properties>
     </profile>
     -->
-
-    <profile>
-      <id>central</id>
-      <repositories>
-        <repository>
-          <id>Central</id>
-          <name>Central</name>
-          <url>http://repo1.maven.org/maven2/</url>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>true</enabled>
-          </snapshots>
-        </repository>
-      </repositories>
-    </profile>
 
   </profiles>
 
