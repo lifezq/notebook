@@ -54,7 +54,7 @@
 
         
         <!-- Nexus私服配置: 第三方jar包下载, 比如oracle的jdbc驱动等 -->
-        <profile>
+        <!-- <profile>
             <id>dev</id>
             <repositories>
                 <repository>
@@ -75,7 +75,7 @@
                     <url>http://nexus.hepengju.cn:8081/nexus/content/groups/public/</url>
                 </pluginRepository>
             </pluginRepositories>
-        </profile>
+        </profile> -->
         
         <!-- 阿里云配置: 提高国内的jar包下载速度 -->
         <profile>
