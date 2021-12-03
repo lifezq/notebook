@@ -27,9 +27,46 @@
     <mirrors>
         <mirror>
             <id>alimaven</id>
+            <mirrorOf>central</mirrorOf>
             <name>aliyun maven</name>
-            <!-- https://maven.aliyun.com/repository/public/ -->
+            <url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
+        </mirror>
+        <mirror>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <mirrorOf>central</mirrorOf>
+        </mirror>
+        <mirror>
+            <id>central</id>
+            <name>Maven Repository Switchboard</name>
+            <url>https://repo1.maven.org/maven2/</url>
+            <mirrorOf>central</mirrorOf>
+        </mirror>
+        <mirror>
+            <id>ibiblio</id>
+            <mirrorOf>central</mirrorOf>
+            <name>Human Readable Name for this Mirror.</name>
+            <url>http://mirrors.ibiblio.org/pub/mirrors/maven2/</url>
+        </mirror>
+        <mirror>
+            <id>jboss-public-repository-group</id>
+            <mirrorOf>central</mirrorOf>
+            <name>JBoss Public Repository Group</name>
+            <url>http://repository.jboss.org/nexus/content/groups/public</url>
+        </mirror>
+        <mirror>
+            <id>google-maven-central</id>
+            <name>Google Maven Central</name>
+            <url>https://maven-central.storage.googleapis.com
+            </url>
+            <mirrorOf>central</mirrorOf>
+        </mirror>
+        <!-- 中央仓库在中国的镜像 -->
+        <mirror>
+            <id>maven.net.cn</id>
+            <name>oneof the central mirrors in china</name>
+            <url>http://maven.net.cn/content/groups/public/</url>
             <mirrorOf>central</mirrorOf>
         </mirror>
     </mirrors>
@@ -39,22 +76,22 @@
     <profiles>
         <!-- 全局JDK1.8配置 -->
         <profile>
-            <id>jdk1.8</id>
+            <id>jdk1.11</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
-                <jdk>1.8</jdk>
+                <jdk>1.11</jdk>
             </activation>
             <properties>
                 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-                <maven.compiler.source>1.8</maven.compiler.source>
-                <maven.compiler.target>1.8</maven.compiler.target>
-                <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+                <maven.compiler.source>1.11</maven.compiler.source>
+                <maven.compiler.target>1.11</maven.compiler.target>
+                <maven.compiler.compilerVersion>1.11</maven.compiler.compilerVersion>
             </properties>
         </profile>
 
         
         <!-- Nexus私服配置: 第三方jar包下载, 比如oracle的jdbc驱动等 -->
-        <!-- <profile>
+      <!--   <profile>
             <id>dev</id>
             <repositories>
                 <repository>
@@ -106,7 +143,7 @@
     
     <!-- 激活配置 --> 
     <activeProfiles>
-        <activeProfile>jdk1.8</activeProfile>
+        <activeProfile>jdk1.11</activeProfile>
         <activeProfile>dev</activeProfile>
         <activeProfile>ali</activeProfile>
     </activeProfiles>
