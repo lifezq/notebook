@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
 
     <!-- 本地仓库的位置 -->
     <!-- <localRepository>${user.home}/.m2/repository</localRepository> -->
-  
+
     <!-- Apache Maven 配置 -->
     <pluginGroups/>
     <proxies/>
@@ -22,19 +22,19 @@
             <password>He2019</password>
         </server>
     </servers>
-    
+
     <!-- 阿里云镜像 -->
     <mirrors>
         <mirror>
             <id>alimaven</id>
             <mirrorOf>central</mirrorOf>
             <name>aliyun maven</name>
-            <url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
+            <url>https://maven.aliyun.com/nexus/content/repositories/central/</url>
         </mirror>
         <mirror>
             <id>alimaven</id>
             <name>aliyun maven</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
             <mirrorOf>central</mirrorOf>
         </mirror>
         <mirror>
@@ -44,31 +44,25 @@
             <mirrorOf>central</mirrorOf>
         </mirror>
         <mirror>
-            <id>ibiblio</id>
-            <mirrorOf>central</mirrorOf>
-            <name>Human Readable Name for this Mirror.</name>
-            <url>http://mirrors.ibiblio.org/pub/mirrors/maven2/</url>
-        </mirror>
-        <mirror>
-            <id>jboss-public-repository-group</id>
-            <mirrorOf>central</mirrorOf>
-            <name>JBoss Public Repository Group</name>
-            <url>http://repository.jboss.org/nexus/content/groups/public</url>
+            <id>jboss-public-repository-group-https</id>
+            <mirrorOf>jboss-public-repository-group</mirrorOf>
+            <name>Jboss public https</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
         </mirror>
         <mirror>
             <id>google-maven-central</id>
             <name>Google Maven Central</name>
-            <url>https://maven-central.storage.googleapis.com
-            </url>
+            <url>https://maven-central.storage.googleapis.com</url>
             <mirrorOf>central</mirrorOf>
         </mirror>
         <!-- 中央仓库在中国的镜像 -->
-        <mirror>
-            <id>maven.net.cn</id>
-            <name>oneof the central mirrors in china</name>
-            <url>http://maven.net.cn/content/groups/public/</url>
-            <mirrorOf>central</mirrorOf>
-        </mirror>
+<!--        <mirror>-->
+<!--            <id>maven.net.cn</id>-->
+<!--            <name>oneof the central mirrors in china</name>-->
+<!--            <url>http://maven.net.cn/content/groups/public/</url>-->
+<!--            <mirrorOf>central</mirrorOf>-->
+<!--        </mirror>-->
+
     </mirrors>
 
     <!-- 配置: java8, 先从阿里云下载, 没有再去私服下载  -->
@@ -89,31 +83,31 @@
             </properties>
         </profile>
 
-        
+
         <!-- Nexus私服配置: 第三方jar包下载, 比如oracle的jdbc驱动等 -->
-      <!--   <profile>
-            <id>dev</id>
-            <repositories>
-                <repository>
-                    <id>nexus</id>
-                    <url>http://nexus.hepengju.cn:8081/nexus/content/groups/public/</url>
-                    <releases>
-                        <enabled>true</enabled>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>public</id>
-                    <name>Public Repositories</name>
-                    <url>http://nexus.hepengju.cn:8081/nexus/content/groups/public/</url>
-                </pluginRepository>
-            </pluginRepositories>
-        </profile> -->
-        
+        <!--   <profile>
+              <id>dev</id>
+              <repositories>
+                  <repository>
+                      <id>nexus</id>
+                      <url>http://nexus.hepengju.cn:8081/nexus/content/groups/public/</url>
+                      <releases>
+                          <enabled>true</enabled>
+                      </releases>
+                      <snapshots>
+                          <enabled>true</enabled>
+                      </snapshots>
+                  </repository>
+              </repositories>
+              <pluginRepositories>
+                  <pluginRepository>
+                      <id>public</id>
+                      <name>Public Repositories</name>
+                      <url>http://nexus.hepengju.cn:8081/nexus/content/groups/public/</url>
+                  </pluginRepository>
+              </pluginRepositories>
+          </profile> -->
+
         <!-- 阿里云配置: 提高国内的jar包下载速度 -->
         <profile>
             <id>ali</id>
@@ -121,7 +115,7 @@
                 <repository>
                     <id>alimaven</id>
                     <name>aliyun maven</name>
-                    <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+                    <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
                     <releases>
                         <enabled>true</enabled>
                     </releases>
@@ -134,14 +128,14 @@
                 <pluginRepository>
                     <id>alimaven</id>
                     <name>aliyun maven</name>
-                    <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+                    <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
                 </pluginRepository>
             </pluginRepositories>
         </profile>
 
     </profiles>
-    
-    <!-- 激活配置 --> 
+
+    <!-- 激活配置 -->
     <activeProfiles>
         <activeProfile>jdk1.11</activeProfile>
         <activeProfile>dev</activeProfile>
